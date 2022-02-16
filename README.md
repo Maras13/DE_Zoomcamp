@@ -1,6 +1,6 @@
 # Data Engineering Zoomcamp
 
-### [Week 1: Introduction & Prerequisites](week_1_basics_n_setup)
+### [Week 1: Introduction & Prerequisites]
 
 * Course overview
 * Introduction to GCP
