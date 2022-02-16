@@ -1,0 +1,28 @@
+version: '3'
+services: 
+# list the containers we want to create
+    mongodb:
+        image: mongo
+        ports:
+        - 27017:27017
+    tweet_collector:  #run container with this name
+        build: tweet_collector/ #go to the luftdaten folder and build the image with what you find there
+        volumes: #share the files from our folder to the container's working directory (app_folder)
+        - ./tweet_collector/:/app
+        depends_on: #specify dependencies .e.g. for starting order
+        - mongodb
+    mypostgres: # next container to run
+        image: postgres:13.0
+        ports:
+        - 5555:5432
+        environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+        - POSTGRES_DB=twitter
+    etl:  #run container with this name
+        build: etl_job/ #go to the luftdaten folder and build the image with what you find there
+        volumes: #share the files from our folder to the container's working directory (app_folder)
+        - ./etl_job/:/app
+        depends_on: #specify dependencies .e.g. for starting order
+        - mongodb
+        - mypostgres
