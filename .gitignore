@@ -129,4 +129,6 @@ dmypy.json
 .pyre/
 
 Docker_DT/ny_taxi_postgres_data
+Docker_dt/data
+
 
